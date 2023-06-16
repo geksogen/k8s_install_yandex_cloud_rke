@@ -1,0 +1,10 @@
+###############################
+#   Installing Docker on host's  #
+###############################
+
+---
+- name: "Installing Docker on host's"
+  hosts: "all"
+
+  roles:
+  - docker
