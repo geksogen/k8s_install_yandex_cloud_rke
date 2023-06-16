@@ -1,0 +1,20 @@
+---
+# apt update
+- name: Run the equivalent of "apt-get update"
+  apt:
+     update_cache: yes
+  become: true
+# Docker install
+- name: Docker install
+  shell: "apt update && apt install -y curl && curl https://get.docker.com -o install.sh && sh install.sh"
+  become: true
+
+# Add user student to run Docker
+- name: Docker install
+  shell: "chown student:docker /var/run/docker.sock"
+  become: true
+
+# Restart Docker on host
+- name: Docker install
+  shell: "service docker restart"
+  become: true
