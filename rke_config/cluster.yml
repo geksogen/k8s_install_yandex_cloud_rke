@@ -5,21 +5,21 @@ enable_cluster_monitoring: false
 ignore_docker_version: true
 
 nodes:
-  - address: 158.160.46.195
+  - address: 158.160.107.161
     hostname_override: node1
     user: student
     labels:
       worker: yes
       location: nsk
     role: [controlplane, worker, etcd]
-  - address: 158.160.103.57
+  - address: 158.160.97.17
     hostname_override: node2
     user: student
     labels:
       worker: yes
       location: nsk
     role: [worker]
-  - address: 158.160.97.136
+  - address: 158.160.109.194
     hostname_override: node3
     user: student
     labels:
