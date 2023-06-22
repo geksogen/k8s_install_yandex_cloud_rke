@@ -1,0 +1,10 @@
+#cloud-config
+users:
+ - default
+ - name: student
+   groups: sudo
+   password: test
+   shell: /bin/bash
+   sudo: ['ALL=(ALL) NOPASSWD:ALL']
+   ssh-authorized-keys:
+        - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKn2BauTeTUUXm+Pqj797kYWrDHeHyzSkGwJO/qwJGcAmwvCVUohKHnkarlSgKGAhMgXOeZBYXo2cwFyq0r3Kvi2tPtOsYrLW/PsFbfSubxAs2cvEkWeMPzDRg63m112s0R0Zn2Ih6NBYC+XqzFyvluJsbJF8XOEydGgYmtNKrQxFVm6fxHtcll4wKnad0ae3I7bhcdUEv8WTS3HTHRB4XvkwujHTfIT154vIPeWvUjnTdPdkkc7kIE4oGlfMgDBMVQFuR+XHxxBUwTj7unUEzmW0V+n+RnTTggYpa5p4anT4TuJae9v7ouoVGak3ZJZXuvdKR0QZZLIg3i9nUE7YH66utSQl1lDxV8D2XzsWP+ECSv0NJGozzjKhFkgFf9Lje1mhPVeJudOyU/jPdyjtA8rf77+qhTLCuepUPb66yw06trH0PkHFNZ1EqXSN/JXJcYD8+Ibhtc0cnH2ond6JMP/cHSQhyu/gRmfL8UjO/EX+huEpfelXy+naIHi7sCdE= student@fhmo2bsjerf6iu72n98k
