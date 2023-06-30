@@ -57,7 +57,7 @@ node1   Ready    controlplane,etcd,worker   2m10s   v1.25.9
 node2   Ready    worker                     2m6s    v1.25.9
 node3   Ready    worker                     2m6s    v1.25.9
 
-scp kube_config_cluster.yml student@158.160.107.186:~/ & ssh student@158.160.107.186
+scp kube_config_cluster.yml student@158.160.102.8:~/ & ssh student@158.160.102.8
 ```
 
 ### Install Kubectl (master node)
@@ -155,5 +155,14 @@ staticPasswords:
 ```Bash
 kustomize build apps/jupyter/jupyter-web-app/upstream/overlay/istio | kubectl apply -f -
 kubectl get pods --all-namespaces -o wide --field-selector spec.nodeName=<node>
+kubectl get nodes -o=custom-columns=NodeName:.metadata.name,TaintKey:.spec.taints[*].key,TaintValue:.spec.taints[*].value,TaintEffect:.spec.taints[*].effect
 ```
 
+### Add image for jupiternotebook
+```Bash
+kubectl -n kubeflow get cm
+kubectl edit cm jupyter-web-app-config-<> -n kubeflow
+kubectl delete pod jupyter-web-app-deployment-<> -n kubeflow
+```
+
+docker pull jupyter/datascience-notebook
