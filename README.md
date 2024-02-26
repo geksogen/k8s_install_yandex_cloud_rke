@@ -73,6 +73,13 @@ mkdir ~/.kube/
 cat kube_config_cluster.yml >~/.kube/k8s-hls & export KUBECONFIG=$(find ~/.kube -maxdepth 1 -type f -name '*' | tr "\n" ":")
 ```
 
+### Install StorageClass in Cluster
+```Bash
+kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/v0.0.22/deploy/local-path-storage.yaml
+kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+kubectl get storageclass
+```
+
 ### Clear
 ```Bash
 #exit from cluster node
