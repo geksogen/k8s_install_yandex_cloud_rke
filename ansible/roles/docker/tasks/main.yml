@@ -15,6 +15,21 @@
   shell: "chown student:docker /var/run/docker.sock"
   become: true
 
+# Docker remove config
+- name: Docker cremove config
+  ansible.builtin.file:
+    path: /etc/docker/daemon.json
+    state: absent
+  become: true
+
+# Docker config set mirrors
+- name: Docker config set mirrors
+  copy:
+      dest: "/etc/docker/daemon.json"
+      content: |
+        {"registry-mirrors": ["https://mirror.gcr.io", "https://daocloud.io", "https://c.163.com/", "https://registry.docker-cn.com"]}
+  become: true
+
 # Restart Docker on host
 - name: Restart Docker service
   shell: "service docker restart"
