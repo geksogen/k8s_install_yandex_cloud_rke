@@ -6,28 +6,19 @@
   become: true
 
 # Docker install
-- name: Docker install
-  shell: "apt update && apt install -y curl && curl https://get.docker.com -o install.sh && sh install.sh"
+- name: Install Docker Engine
+  ansible.builtin.apt:
+    name:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+    state: present
+    update_cache: yes
   become: true
 
 # Add user student to run Docker
 - name: Add user "student" to run Docker
   shell: "chown student:docker /var/run/docker.sock"
-  become: true
-
-# Docker remove config
-- name: Docker cremove config
-  ansible.builtin.file:
-    path: /etc/docker/daemon.json
-    state: absent
-  become: true
-
-# Docker config set mirrors
-- name: Docker config set mirrors
-  copy:
-      dest: "/etc/docker/daemon.json"
-      content: |
-        {"registry-mirrors": ["https://mirror.gcr.io", "https://daocloud.io", "https://c.163.com/", "https://registry.docker-cn.com"]}
   become: true
 
 # Restart Docker on host
