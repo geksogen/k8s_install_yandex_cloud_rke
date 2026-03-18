@@ -10,7 +10,7 @@ sudo apt update
 sudo apt install ansible
 ```
 
-### Configure terraform provider on host
+### Configure terraform provider onn host
 Create ~/.terraformrc
 ```
 provider_installation {
