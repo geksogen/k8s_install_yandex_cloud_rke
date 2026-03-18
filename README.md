@@ -91,7 +91,7 @@ kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storagec
 kubectl get storageclass
 ```
 
-### Set quota for resources
+### Set quota for resourcess
 ```Bash
 cd ~
 nano quota.yaml
