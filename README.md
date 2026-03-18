@@ -1,4 +1,4 @@
-### Set k8s for Yandex Cloud use RKE
+## Set k8s for Yandex Cloud use RKE
 
 * Ubuntu v22.04 (2CPU, 40GB HDD, 8Gb RAM)
 * k8s v1.25.9
