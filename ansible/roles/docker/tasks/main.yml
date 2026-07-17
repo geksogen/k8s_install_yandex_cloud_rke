@@ -5,20 +5,35 @@
      update_cache: yes
   become: true
 
-# Docker install
-- name: Install Docker Engine
-  ansible.builtin.apt:
-    name:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-    state: present
-    update_cache: yes
+# Убеждаемся, что служба Docker запущена и добавлена в автозагрузку
+- name: Ensure Docker service is running
+  service:
+    name: docker
+    state: started
+    enabled: yes
   become: true
 
-# Add user student to run Docker
-- name: Add user "student" to run Docker
-  shell: "chown student:docker /var/run/docker.sock"
+# Вместо изменения прав на .sock файл вручную, добавляем пользователя в группу docker
+- name: Add user "student" to docker group
+  user:
+    name: student
+    groups: docker
+    append: yes
+  become: true
+
+# Docker remove config
+- name: Docker cremove config
+  ansible.builtin.file:
+    path: /etc/docker/daemon.json
+    state: absent
+  become: true
+
+# Docker config set mirrors
+- name: Docker config set mirrors
+  copy:
+      dest: "/etc/docker/daemon.json"
+      content: |
+        {"registry-mirrors": ["https://mirror.gcr.io", "https://daocloud.io", "https://c.163.com/", "https://registry.docker-cn.com"]}
   become: true
 
 # Restart Docker on host
